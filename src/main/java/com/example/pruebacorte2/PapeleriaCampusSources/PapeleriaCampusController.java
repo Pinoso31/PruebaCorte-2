@@ -283,20 +283,20 @@ public class PapeleriaCampusController {
         // V1: Código (1-10 caracteres)
         String codigo = txtCodigo.getText().trim();
         if (codigo.isEmpty() || codigo.length() > 10) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V1", "El código debe contener entre 1 y 10 caracteres.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El código debe contener entre 1 y 10 caracteres.");
             return false;
         }
 
         // V2: Nombre (3-80 caracteres)
         String nombre = txtNombre.getText().trim();
         if (nombre.length() < 3 || nombre.length() > 80) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V2", "El nombre debe tener entre 3 y 80 caracteres.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El nombre debe tener entre 3 y 80 caracteres.");
             return false;
         }
 
         // V3: Categoría
         if (cbCategoria.getValue() == null) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V3", "Debe seleccionar una categoría permitida.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "Debe seleccionar una categoría permitida.");
             return false;
         }
 
@@ -304,19 +304,19 @@ public class PapeleriaCampusController {
         try {
             BigDecimal precio = new BigDecimal(txtPrecio.getText().trim());
             if (precio.compareTo(BigDecimal.ZERO) <= 0) { // V5: mayor que 0
-                mostrarAlerta(Alert.AlertType.ERROR, "Validación V5", "El precio debe ser mayor a 0.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El precio debe ser mayor a 0.");
                 return false;
             }
             if (precio.scale() > 2) { // V6: Máximo 2 decimales
-                mostrarAlerta(Alert.AlertType.ERROR, "Validación V6", "El precio no debe tener más de 2 decimales.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El precio no debe tener más de 2 decimales.");
                 return false;
             }
             if (precio.compareTo(new BigDecimal("99999999.99")) > 0) { // V6: Exceso de rango
-                mostrarAlerta(Alert.AlertType.ERROR, "Validación V6", "El precio supera el límite permitido.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El precio supera el límite permitido.");
                 return false;
             }
         } catch (NumberFormatException e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V4", "El precio debe ser un número válido.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El precio debe ser un número válido.");
             return false;
         }
 
@@ -324,17 +324,17 @@ public class PapeleriaCampusController {
         try {
             int stock = Integer.parseInt(txtStock.getText().trim());
             if (stock < 0) { // V8: Negativos no permitidos
-                mostrarAlerta(Alert.AlertType.ERROR, "Validación V8", "El stock no puede ser negativo.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El stock no puede ser negativo.");
                 return false;
             }
         } catch (NumberFormatException e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V7", "El stock debe ser un número entero.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El stock debe ser un número entero.");
             return false;
         }
 
         // V9: Comprobación de duplicados previa
         if (existeCodigoDuplicado(codigo.toUpperCase(), esEdicion ? Integer.parseInt(txtId.getText()) : null)) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Validación V9", "El código ingresado ya está registrado.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Campos por completar", "El código ingresado ya está registrado.");
             return false;
         }
 
