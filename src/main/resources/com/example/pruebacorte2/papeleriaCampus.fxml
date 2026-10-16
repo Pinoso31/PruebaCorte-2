@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebacorte2.PapeleriaCampusSources.PapeleriaCampusController">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+    <children>
+        <!-- TÍTULO PRINCIPAL -->
+        <Label text="Catálogo de productos - Papelería Campus">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+
+        <!-- FORMULARIO SUPERIOR -->
+        <GridPane hgap="10.0" vgap="10.0">
+            <children>
+                <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtId" disable="true" promptText="Automático" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="txtCodigo" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Categoría:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <ComboBox fx:id="cbCategoria" promptText="Seleccione" prefWidth="180.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="txtNombre" promptText="Nombre del producto" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Precio C$:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="txtPrecio" promptText="0.00" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Stock:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <TextField fx:id="txtStock" promptText="0" prefWidth="180.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+
+        <!-- BOTONES DEL FORMULARIO -->
+        <HBox spacing="10.0">
+            <children>
+                <Button fx:id="btnLimpiarFormulario" onAction="#accionLimpiarFormulario" text="Limpiar formulario" />
+                <Button fx:id="btnGuardar" onAction="#accionGuardar" text="Guardar" />
+                <Button fx:id="btnActualizar" onAction="#accionActualizar" text="Actualizar" />
+                <Button fx:id="btnEliminar" onAction="#accionEliminar" text="Eliminar" />
+            </children>
+        </HBox>
+
+        <!-- SECCIÓN DE BÚSQUEDA Y FILTROS -->
+        <Label text="Búsqueda y filtros">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label text="Código o nombre:" />
+                <TextField fx:id="txtBuscar" promptText="Buscar..." prefWidth="180.0" />
+                <Label text="Categoría:" />
+                <ComboBox fx:id="cbFiltroCategoria" prefWidth="180.0" />
+            </children>
+        </HBox>
+
+        <CheckBox fx:id="chkSoloExistencias" text="Solo con existencias" />
+
+        <!-- BOTONES DE BÚSQUEDA -->
+        <HBox spacing="10.0">
+            <children>
+                <Button fx:id="btnBuscar" onAction="#accionBuscar" text="Buscar" />
+                <Button fx:id="btnLimpiarFiltros" onAction="#accionLimpiarFiltros" text="Limpiar filtros" />
+                <Button fx:id="btnRecargar" onAction="#accionRecargar" text="Recargar" />
+            </children>
+        </HBox>
+
+        <!-- TABLEVIEW -->
+        <TableView fx:id="colTabla" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="colCodigo" prefWidth="100.0" text="Código" />
+                <TableColumn fx:id="colNombre" prefWidth="250.0" text="Nombre" />
+                <TableColumn fx:id="colCategoria" prefWidth="140.0" text="Categoría" />
+                <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio C$" />
+                <TableColumn fx:id="colStock" prefWidth="80.0" text="Stock" />
+            </columns>
+        </TableView>
+
+        <!-- PIE DE PÁGINA: CONTADOR DE REGISTROS -->
+        <Label fx:id="lblRegistros" text="Registros: 0" />
+    </children>
+</VBox>
